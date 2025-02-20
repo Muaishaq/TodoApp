@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: cadetblue;
+      }
+      #todo-container {
+        background-color: gainsboro;
+        width: 45%;
+        height: 200px;
+        text-align: center;
+        margin: auto;
+        margin-top: 170px;
+        padding: 5px;
+        border: 3px solid whitesmoke;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      #todo-container h1 {
+        margin: 10px;
+        color: cadetblue;
+        font-family: cursive;
+      }
+      #todo-container #todo-input {
+        border: 3px solid cadetblue;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 2px;
+      }
+      #todo-container #todo-input:active {
+        border: 3.5px solid whitesmoke;
+      }
+      #todo-container #todo-input:hover {
+        background-color: lightgray;
+      }
+      #todo-container #add-todo {
+        background-color: cadetblue;
+        color: whitesmoke;
+        padding: 5px;
+        border: 2px solid whitesmoke;
+        border-radius: 5px;
+      }
+      #todo-container #add-todo:hover {
+        background-color: whitesmoke;
+        color: cadetblue;
+      }
+      #todo-container #clrTask {
+        background-color: red;
+        color: whitesmoke;
+        padding: 5px;
+        border: 2px solid whitesmoke;
+        border-radius: 5px;
+      }
+      #todo-container #clrTask:hover {
+        background-color: darkred;
+        color: whitesmoke;
+      }
+      #todo-container #todo-list {
+        color: black;
+        font-size: large;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="todo-container">
+      <h1>TODO PROJECT</h1>
+      <input type="text" name="" id="todo-input" />
+      <button type="button" id="add-todo">ADD</button>
+      <ul id="todo-list"></ul>
+      <button id="clrTask">CLEAR TASKS</button>
+    </div>
+    <script>
+      document
+        .querySelector("#add-todo")
+        .addEventListener("click", function () {
+          let todoInput = document.querySelector("#todo-input");
+          let taskText = todoInput.value.trim();
+          if (taskText !== "") {
+            AddTodo(taskText);
+            todoInput.value = "";
+          }
+        });
+      function AddTodo(taskText) {
+        const todoList = document.querySelector("#todo-list");
+        const taskItem = document.createElement("li");
+        const taskContent = document.createElement("span");
+        taskContent.textContent = taskText;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "❌";
+        deleteBtn.classList.add = "delete-btn";
+        deleteBtn.style.backgroundColor = "transparent";
+        deleteBtn.style.border = "none";
+        deleteBtn.style.marginLeft = "5px";
+        const clrTask = document.querySelector("#clrTask");
+        const addTodo = document.querySelector("#add-todo");
+        deleteBtn.addEventListener("click", function () {
+          todoList.removeChild(taskItem);
+        });
+
+        clrTask.addEventListener("click", function () {
+          todoList.removeChild(taskItem);
+        });
+
+        taskItem.appendChild(taskContent);
+        taskItem.appendChild(deleteBtn);
+        todoList.appendChild(taskItem);
+      }
+    </script>
+  </body>
+</html>
