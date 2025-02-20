@@ -16,7 +16,7 @@
       #todo-container {
         background-color: gainsboro;
         text-align: center;
-        width: 80%;
+        width: 70%;
         margin: 0 auto;
         margin-top: 10rem;
         padding: 50px;
@@ -59,6 +59,7 @@
         padding: 5px;
         border: 2px solid whitesmoke;
         border-radius: 5px;
+        display: none;
       }
       #todo-container #clrTask:hover {
         background-color: darkred;
@@ -68,14 +69,22 @@
         color: black;
         font-size: large;
         list-style: none;
+        padding: 5px;
+      }
+      #todo-container #inp {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
       }
     </style>
   </head>
   <body>
     <div id="todo-container">
       <h1>TODO PROJECT</h1>
-      <input type="text" name="" id="todo-input" />
-      <button type="button" id="add-todo">ADD</button>
+      <div id="inp">
+        <input type="text" name="" id="todo-input" />
+        <button type="button" id="add-todo">ADD</button>
+      </div>
       <ul id="todo-list"></ul>
       <button id="clrTask">CLEAR TASKS</button>
     </div>
@@ -109,11 +118,23 @@
 
         clrTask.addEventListener("click", function () {
           todoList.removeChild(taskItem);
+          showCheckclr();
         });
 
         taskItem.appendChild(taskContent);
         taskItem.appendChild(deleteBtn);
         todoList.appendChild(taskItem);
+        showCheckclr();
+      }
+      function showCheckclr() {
+        const todoList = document.querySelector("#todo-list");
+        const clrTask = document.querySelector("#clrTask");
+
+        if (todoList.innerHTML === "") {
+          clrTask.style.display = "none";
+        } else {
+          clrTask.style.display = "initial";
+        }
       }
     </script>
   </body>
